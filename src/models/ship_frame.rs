@@ -31,13 +31,13 @@ pub struct ShipFrame {
     pub integrity: f64,
     /// The amount of slots that can be dedicated to modules installed in the ship. Each installed module take up a number of slots, and once there are no more slots, no new modules can be installed.
     #[serde(rename = "moduleSlots")]
-    pub module_slots: u32,
+    pub module_slots: i32,
     /// The amount of slots that can be dedicated to mounts installed in the ship. Each installed mount takes up a number of points, and once there are no more points remaining, no new mounts can be installed.
     #[serde(rename = "mountingPoints")]
-    pub mounting_points: u32,
+    pub mounting_points: i32,
     /// The maximum amount of fuel that can be stored in this ship. When refueling, the ship will be refueled to this amount.
     #[serde(rename = "fuelCapacity")]
-    pub fuel_capacity: u32,
+    pub fuel_capacity: i32,
     #[serde(rename = "requirements")]
     pub requirements: Box<models::ShipRequirements>,
 }
@@ -50,9 +50,9 @@ impl ShipFrame {
         description: String,
         condition: f64,
         integrity: f64,
-        module_slots: u32,
-        mounting_points: u32,
-        fuel_capacity: u32,
+        module_slots: i32,
+        mounting_points: i32,
+        fuel_capacity: i32,
         requirements: models::ShipRequirements,
     ) -> ShipFrame {
         ShipFrame {

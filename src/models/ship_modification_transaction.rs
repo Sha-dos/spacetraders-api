@@ -25,7 +25,7 @@ pub struct ShipModificationTransaction {
     pub trade_symbol: String,
     /// The total price of the transaction.
     #[serde(rename = "totalPrice")]
-    pub total_price: u32,
+    pub total_price: i32,
     /// The timestamp of the transaction.
     #[serde(rename = "timestamp")]
     pub timestamp: String,
@@ -37,7 +37,7 @@ impl ShipModificationTransaction {
         waypoint_symbol: String,
         ship_symbol: String,
         trade_symbol: String,
-        total_price: u32,
+        total_price: i32,
         timestamp: String,
     ) -> ShipModificationTransaction {
         ShipModificationTransaction {

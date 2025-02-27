@@ -17,11 +17,11 @@ pub struct JettisonRequest {
     pub symbol: models::TradeSymbol,
     /// Amount of units to jettison of this good.
     #[serde(rename = "units")]
-    pub units: u32,
+    pub units: i32,
 }
 
 impl JettisonRequest {
-    pub fn new(symbol: models::TradeSymbol, units: u32) -> JettisonRequest {
+    pub fn new(symbol: models::TradeSymbol, units: i32) -> JettisonRequest {
         JettisonRequest { symbol, units }
     }
 }

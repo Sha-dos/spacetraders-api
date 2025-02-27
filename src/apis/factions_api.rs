@@ -13,22 +13,6 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for typed successes of method [`get_faction`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetFactionSuccess {
-    Status200(models::GetFaction200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_factions`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetFactionsSuccess {
-    Status200(models::GetFactions200Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`get_faction`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -47,7 +31,7 @@ pub enum GetFactionsError {
 pub async fn get_faction(
     configuration: &configuration::Configuration,
     faction_symbol: &str,
-) -> Result<ResponseContent<GetFactionSuccess>, Error<GetFactionError>> {
+) -> Result<models::GetFaction200Response, Error<GetFactionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_faction_symbol = faction_symbol;
 
@@ -72,12 +56,7 @@ pub async fn get_faction(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetFactionSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetFactionError> = serde_json::from_str(&content).ok();
@@ -92,9 +71,9 @@ pub async fn get_faction(
 /// Return a paginated list of all the factions in the game.
 pub async fn get_factions(
     configuration: &configuration::Configuration,
-    page: Option<u32>,
-    limit: Option<u32>,
-) -> Result<ResponseContent<GetFactionsSuccess>, Error<GetFactionsError>> {
+    page: Option<i32>,
+    limit: Option<i32>,
+) -> Result<models::GetFactions200Response, Error<GetFactionsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_page = page;
     let p_limit = limit;
@@ -122,12 +101,7 @@ pub async fn get_factions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetFactionsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetFactionsError> = serde_json::from_str(&content).ok();

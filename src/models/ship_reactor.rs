@@ -31,7 +31,7 @@ pub struct ShipReactor {
     pub integrity: f64,
     /// The amount of power provided by this reactor. The more power a reactor provides to the ship, the lower the cooldown it gets when using a module or mount that taxes the ship's power.
     #[serde(rename = "powerOutput")]
-    pub power_output: u32,
+    pub power_output: i32,
     #[serde(rename = "requirements")]
     pub requirements: Box<models::ShipRequirements>,
 }
@@ -44,7 +44,7 @@ impl ShipReactor {
         description: String,
         condition: f64,
         integrity: f64,
-        power_output: u32,
+        power_output: i32,
         requirements: models::ShipRequirements,
     ) -> ShipReactor {
         ShipReactor {

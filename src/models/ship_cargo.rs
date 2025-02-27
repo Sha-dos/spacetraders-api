@@ -16,10 +16,10 @@ use serde::{Deserialize, Serialize};
 pub struct ShipCargo {
     /// The max number of items that can be stored in the cargo hold.
     #[serde(rename = "capacity")]
-    pub capacity: u32,
+    pub capacity: i32,
     /// The number of items currently stored in the cargo hold.
     #[serde(rename = "units")]
-    pub units: u32,
+    pub units: i32,
     /// The items currently in the cargo hold.
     #[serde(rename = "inventory")]
     pub inventory: Vec<models::ShipCargoItem>,
@@ -27,7 +27,7 @@ pub struct ShipCargo {
 
 impl ShipCargo {
     /// Ship cargo details.
-    pub fn new(capacity: u32, units: u32, inventory: Vec<models::ShipCargoItem>) -> ShipCargo {
+    pub fn new(capacity: i32, units: i32, inventory: Vec<models::ShipCargoItem>) -> ShipCargo {
         ShipCargo {
             capacity,
             units,

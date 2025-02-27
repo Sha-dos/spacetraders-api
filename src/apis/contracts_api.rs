@@ -13,46 +13,6 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for typed successes of method [`accept_contract`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AcceptContractSuccess {
-    Status200(models::AcceptContract200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`deliver_contract`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DeliverContractSuccess {
-    Status200(models::DeliverContract200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`fulfill_contract`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum FulfillContractSuccess {
-    Status200(models::FulfillContract200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_contract`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetContractSuccess {
-    Status200(models::GetContract200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_contracts`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetContractsSuccess {
-    Status200(models::GetContracts200Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`accept_contract`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -92,7 +52,7 @@ pub enum GetContractsError {
 pub async fn accept_contract(
     configuration: &configuration::Configuration,
     contract_id: &str,
-) -> Result<ResponseContent<AcceptContractSuccess>, Error<AcceptContractError>> {
+) -> Result<models::AcceptContract200Response, Error<AcceptContractError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_contract_id = contract_id;
 
@@ -119,12 +79,7 @@ pub async fn accept_contract(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<AcceptContractSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<AcceptContractError> = serde_json::from_str(&content).ok();
@@ -141,7 +96,7 @@ pub async fn deliver_contract(
     configuration: &configuration::Configuration,
     contract_id: &str,
     deliver_contract_request: Option<models::DeliverContractRequest>,
-) -> Result<ResponseContent<DeliverContractSuccess>, Error<DeliverContractError>> {
+) -> Result<models::DeliverContract200Response, Error<DeliverContractError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_contract_id = contract_id;
     let p_deliver_contract_request = deliver_contract_request;
@@ -170,12 +125,7 @@ pub async fn deliver_contract(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<DeliverContractSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<DeliverContractError> = serde_json::from_str(&content).ok();
@@ -191,7 +141,7 @@ pub async fn deliver_contract(
 pub async fn fulfill_contract(
     configuration: &configuration::Configuration,
     contract_id: &str,
-) -> Result<ResponseContent<FulfillContractSuccess>, Error<FulfillContractError>> {
+) -> Result<models::FulfillContract200Response, Error<FulfillContractError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_contract_id = contract_id;
 
@@ -218,12 +168,7 @@ pub async fn fulfill_contract(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<FulfillContractSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<FulfillContractError> = serde_json::from_str(&content).ok();
@@ -239,7 +184,7 @@ pub async fn fulfill_contract(
 pub async fn get_contract(
     configuration: &configuration::Configuration,
     contract_id: &str,
-) -> Result<ResponseContent<GetContractSuccess>, Error<GetContractError>> {
+) -> Result<models::GetContract200Response, Error<GetContractError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_contract_id = contract_id;
 
@@ -264,12 +209,7 @@ pub async fn get_contract(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetContractSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetContractError> = serde_json::from_str(&content).ok();
@@ -284,9 +224,9 @@ pub async fn get_contract(
 /// Return a paginated list of all your contracts.
 pub async fn get_contracts(
     configuration: &configuration::Configuration,
-    page: Option<u32>,
-    limit: Option<u32>,
-) -> Result<ResponseContent<GetContractsSuccess>, Error<GetContractsError>> {
+    page: Option<i32>,
+    limit: Option<i32>,
+) -> Result<models::GetContracts200Response, Error<GetContractsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_page = page;
     let p_limit = limit;
@@ -314,12 +254,7 @@ pub async fn get_contracts(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetContractsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetContractsError> = serde_json::from_str(&content).ok();

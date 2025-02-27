@@ -24,7 +24,7 @@ pub struct ShipCargoItem {
     pub description: String,
     /// The number of units of the cargo item.
     #[serde(rename = "units")]
-    pub units: u32,
+    pub units: i32,
 }
 
 impl ShipCargoItem {
@@ -33,7 +33,7 @@ impl ShipCargoItem {
         symbol: models::TradeSymbol,
         name: String,
         description: String,
-        units: u32,
+        units: i32,
     ) -> ShipCargoItem {
         ShipCargoItem {
             symbol,

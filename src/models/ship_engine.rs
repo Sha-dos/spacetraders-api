@@ -31,7 +31,7 @@ pub struct ShipEngine {
     pub integrity: f64,
     /// The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship.
     #[serde(rename = "speed")]
-    pub speed: u32,
+    pub speed: i32,
     #[serde(rename = "requirements")]
     pub requirements: Box<models::ShipRequirements>,
 }
@@ -44,7 +44,7 @@ impl ShipEngine {
         description: String,
         condition: f64,
         integrity: f64,
-        speed: u32,
+        speed: i32,
         requirements: models::ShipRequirements,
     ) -> ShipEngine {
         ShipEngine {

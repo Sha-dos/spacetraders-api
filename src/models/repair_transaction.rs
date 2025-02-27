@@ -22,7 +22,7 @@ pub struct RepairTransaction {
     pub ship_symbol: String,
     /// The total price of the transaction.
     #[serde(rename = "totalPrice")]
-    pub total_price: u32,
+    pub total_price: i32,
     /// The timestamp of the transaction.
     #[serde(rename = "timestamp")]
     pub timestamp: String,
@@ -33,7 +33,7 @@ impl RepairTransaction {
     pub fn new(
         waypoint_symbol: String,
         ship_symbol: String,
-        total_price: u32,
+        total_price: i32,
         timestamp: String,
     ) -> RepairTransaction {
         RepairTransaction {

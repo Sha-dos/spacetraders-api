@@ -25,7 +25,7 @@ pub struct ShipyardTransaction {
     pub ship_type: String,
     /// The price of the transaction.
     #[serde(rename = "price")]
-    pub price: u32,
+    pub price: i32,
     /// The symbol of the agent that made the transaction.
     #[serde(rename = "agentSymbol")]
     pub agent_symbol: String,
@@ -40,7 +40,7 @@ impl ShipyardTransaction {
         waypoint_symbol: String,
         ship_symbol: String,
         ship_type: String,
-        price: u32,
+        price: i32,
         agent_symbol: String,
         timestamp: String,
     ) -> ShipyardTransaction {

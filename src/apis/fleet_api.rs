@@ -13,279 +13,6 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for typed successes of method [`create_chart`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateChartSuccess {
-    Status201(models::CreateChart201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`create_ship_ship_scan`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateShipShipScanSuccess {
-    Status201(models::CreateShipShipScan201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`create_ship_system_scan`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateShipSystemScanSuccess {
-    Status201(models::CreateShipSystemScan201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`create_ship_waypoint_scan`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateShipWaypointScanSuccess {
-    Status201(models::CreateShipWaypointScan201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`create_survey`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CreateSurveySuccess {
-    Status201(models::CreateSurvey201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`dock_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum DockShipSuccess {
-    Status200(models::DockShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`extract_resources`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ExtractResourcesSuccess {
-    Status201(models::ExtractResources201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`extract_resources_with_survey`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ExtractResourcesWithSurveySuccess {
-    Status201(models::ExtractResources201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_mounts`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetMountsSuccess {
-    Status200(models::GetMounts200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_my_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetMyShipSuccess {
-    Status200(models::GetMyShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_my_ship_cargo`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetMyShipCargoSuccess {
-    Status200(models::GetMyShipCargo200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_my_ships`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetMyShipsSuccess {
-    Status200(models::GetMyShips200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_repair_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetRepairShipSuccess {
-    Status200(models::GetRepairShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_scrap_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetScrapShipSuccess {
-    Status200(models::GetScrapShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_ship_cooldown`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetShipCooldownSuccess {
-    Status200(models::GetShipCooldown200Response),
-    Status204(),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_ship_nav`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetShipNavSuccess {
-    Status200(models::GetShipNav200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`install_mount`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum InstallMountSuccess {
-    Status201(models::InstallMount201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`jettison`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum JettisonSuccess {
-    Status200(models::Jettison200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`jump_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum JumpShipSuccess {
-    Status200(models::JumpShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`navigate_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum NavigateShipSuccess {
-    Status200(models::NavigateShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`negotiate_contract`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum NegotiateContractSuccess {
-    Status201(models::NegotiateContract200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`orbit_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OrbitShipSuccess {
-    Status200(models::OrbitShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`patch_ship_nav`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PatchShipNavSuccess {
-    Status200(models::GetShipNav200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`purchase_cargo`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PurchaseCargoSuccess {
-    Status201(models::PurchaseCargo201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`purchase_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PurchaseShipSuccess {
-    Status201(models::PurchaseShip201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`refuel_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RefuelShipSuccess {
-    Status200(models::RefuelShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`remove_mount`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RemoveMountSuccess {
-    Status201(models::RemoveMount201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`repair_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RepairShipSuccess {
-    Status200(models::RepairShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`scrap_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ScrapShipSuccess {
-    Status200(models::ScrapShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`sell_cargo`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum SellCargoSuccess {
-    Status201(models::SellCargo201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`ship_refine`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ShipRefineSuccess {
-    Status201(models::ShipRefine201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`siphon_resources`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum SiphonResourcesSuccess {
-    Status201(models::SiphonResources201Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`transfer_cargo`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum TransferCargoSuccess {
-    Status200(models::TransferCargo200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`warp_ship`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum WarpShipSuccess {
-    Status200(models::WarpShip200Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`create_chart`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -528,7 +255,7 @@ pub enum WarpShipError {
 pub async fn create_chart(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<CreateChartSuccess>, Error<CreateChartError>> {
+) -> Result<models::CreateChart201Response, Error<CreateChartError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -555,12 +282,7 @@ pub async fn create_chart(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<CreateChartSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateChartError> = serde_json::from_str(&content).ok();
@@ -576,7 +298,7 @@ pub async fn create_chart(
 pub async fn create_ship_ship_scan(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<CreateShipShipScanSuccess>, Error<CreateShipShipScanError>> {
+) -> Result<models::CreateShipShipScan201Response, Error<CreateShipShipScanError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -603,12 +325,7 @@ pub async fn create_ship_ship_scan(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<CreateShipShipScanSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateShipShipScanError> = serde_json::from_str(&content).ok();
@@ -624,7 +341,7 @@ pub async fn create_ship_ship_scan(
 pub async fn create_ship_system_scan(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<CreateShipSystemScanSuccess>, Error<CreateShipSystemScanError>> {
+) -> Result<models::CreateShipSystemScan201Response, Error<CreateShipSystemScanError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -651,12 +368,7 @@ pub async fn create_ship_system_scan(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<CreateShipSystemScanSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateShipSystemScanError> = serde_json::from_str(&content).ok();
@@ -672,7 +384,7 @@ pub async fn create_ship_system_scan(
 pub async fn create_ship_waypoint_scan(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<CreateShipWaypointScanSuccess>, Error<CreateShipWaypointScanError>> {
+) -> Result<models::CreateShipWaypointScan201Response, Error<CreateShipWaypointScanError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -699,12 +411,7 @@ pub async fn create_ship_waypoint_scan(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<CreateShipWaypointScanSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateShipWaypointScanError> = serde_json::from_str(&content).ok();
@@ -720,7 +427,7 @@ pub async fn create_ship_waypoint_scan(
 pub async fn create_survey(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<CreateSurveySuccess>, Error<CreateSurveyError>> {
+) -> Result<models::CreateSurvey201Response, Error<CreateSurveyError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -747,12 +454,7 @@ pub async fn create_survey(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<CreateSurveySuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<CreateSurveyError> = serde_json::from_str(&content).ok();
@@ -768,7 +470,7 @@ pub async fn create_survey(
 pub async fn dock_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<DockShipSuccess>, Error<DockShipError>> {
+) -> Result<models::DockShip200Response, Error<DockShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -795,12 +497,7 @@ pub async fn dock_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<DockShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<DockShipError> = serde_json::from_str(&content).ok();
@@ -817,7 +514,7 @@ pub async fn extract_resources(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     extract_resources_request: Option<models::ExtractResourcesRequest>,
-) -> Result<ResponseContent<ExtractResourcesSuccess>, Error<ExtractResourcesError>> {
+) -> Result<models::ExtractResources201Response, Error<ExtractResourcesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_extract_resources_request = extract_resources_request;
@@ -846,12 +543,7 @@ pub async fn extract_resources(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<ExtractResourcesSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<ExtractResourcesError> = serde_json::from_str(&content).ok();
@@ -868,10 +560,7 @@ pub async fn extract_resources_with_survey(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     survey: Option<models::Survey>,
-) -> Result<
-    ResponseContent<ExtractResourcesWithSurveySuccess>,
-    Error<ExtractResourcesWithSurveyError>,
-> {
+) -> Result<models::ExtractResources201Response, Error<ExtractResourcesWithSurveyError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_survey = survey;
@@ -900,12 +589,7 @@ pub async fn extract_resources_with_survey(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<ExtractResourcesWithSurveySuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<ExtractResourcesWithSurveyError> = serde_json::from_str(&content).ok();
@@ -921,7 +605,7 @@ pub async fn extract_resources_with_survey(
 pub async fn get_mounts(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetMountsSuccess>, Error<GetMountsError>> {
+) -> Result<models::GetMounts200Response, Error<GetMountsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -946,12 +630,7 @@ pub async fn get_mounts(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetMountsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMountsError> = serde_json::from_str(&content).ok();
@@ -967,7 +646,7 @@ pub async fn get_mounts(
 pub async fn get_my_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetMyShipSuccess>, Error<GetMyShipError>> {
+) -> Result<models::GetMyShip200Response, Error<GetMyShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -992,12 +671,7 @@ pub async fn get_my_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetMyShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMyShipError> = serde_json::from_str(&content).ok();
@@ -1013,7 +687,7 @@ pub async fn get_my_ship(
 pub async fn get_my_ship_cargo(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetMyShipCargoSuccess>, Error<GetMyShipCargoError>> {
+) -> Result<models::GetMyShipCargo200Response, Error<GetMyShipCargoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1038,12 +712,7 @@ pub async fn get_my_ship_cargo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetMyShipCargoSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMyShipCargoError> = serde_json::from_str(&content).ok();
@@ -1058,9 +727,9 @@ pub async fn get_my_ship_cargo(
 /// Return a paginated list of all of ships under your agent's ownership.
 pub async fn get_my_ships(
     configuration: &configuration::Configuration,
-    page: Option<u32>,
-    limit: Option<u32>,
-) -> Result<ResponseContent<GetMyShipsSuccess>, Error<GetMyShipsError>> {
+    page: Option<i32>,
+    limit: Option<i32>,
+) -> Result<models::GetMyShips200Response, Error<GetMyShipsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_page = page;
     let p_limit = limit;
@@ -1088,12 +757,7 @@ pub async fn get_my_ships(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetMyShipsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMyShipsError> = serde_json::from_str(&content).ok();
@@ -1109,7 +773,7 @@ pub async fn get_my_ships(
 pub async fn get_repair_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetRepairShipSuccess>, Error<GetRepairShipError>> {
+) -> Result<models::GetRepairShip200Response, Error<GetRepairShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1134,12 +798,7 @@ pub async fn get_repair_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetRepairShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetRepairShipError> = serde_json::from_str(&content).ok();
@@ -1155,7 +814,7 @@ pub async fn get_repair_ship(
 pub async fn get_scrap_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetScrapShipSuccess>, Error<GetScrapShipError>> {
+) -> Result<models::GetScrapShip200Response, Error<GetScrapShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1180,12 +839,7 @@ pub async fn get_scrap_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetScrapShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetScrapShipError> = serde_json::from_str(&content).ok();
@@ -1201,7 +855,7 @@ pub async fn get_scrap_ship(
 pub async fn get_ship_cooldown(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetShipCooldownSuccess>, Error<GetShipCooldownError>> {
+) -> Result<models::GetShipCooldown200Response, Error<GetShipCooldownError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1226,12 +880,7 @@ pub async fn get_ship_cooldown(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetShipCooldownSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetShipCooldownError> = serde_json::from_str(&content).ok();
@@ -1247,7 +896,7 @@ pub async fn get_ship_cooldown(
 pub async fn get_ship_nav(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<GetShipNavSuccess>, Error<GetShipNavError>> {
+) -> Result<models::GetShipNav200Response, Error<GetShipNavError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1272,12 +921,7 @@ pub async fn get_ship_nav(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetShipNavSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetShipNavError> = serde_json::from_str(&content).ok();
@@ -1294,7 +938,7 @@ pub async fn install_mount(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     install_mount_request: Option<models::InstallMountRequest>,
-) -> Result<ResponseContent<InstallMountSuccess>, Error<InstallMountError>> {
+) -> Result<models::InstallMount201Response, Error<InstallMountError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_install_mount_request = install_mount_request;
@@ -1323,12 +967,7 @@ pub async fn install_mount(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<InstallMountSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<InstallMountError> = serde_json::from_str(&content).ok();
@@ -1345,7 +984,7 @@ pub async fn jettison(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     jettison_request: Option<models::JettisonRequest>,
-) -> Result<ResponseContent<JettisonSuccess>, Error<JettisonError>> {
+) -> Result<models::Jettison200Response, Error<JettisonError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_jettison_request = jettison_request;
@@ -1374,12 +1013,7 @@ pub async fn jettison(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<JettisonSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<JettisonError> = serde_json::from_str(&content).ok();
@@ -1396,7 +1030,7 @@ pub async fn jump_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     jump_ship_request: Option<models::JumpShipRequest>,
-) -> Result<ResponseContent<JumpShipSuccess>, Error<JumpShipError>> {
+) -> Result<models::JumpShip200Response, Error<JumpShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_jump_ship_request = jump_ship_request;
@@ -1425,12 +1059,7 @@ pub async fn jump_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<JumpShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<JumpShipError> = serde_json::from_str(&content).ok();
@@ -1447,7 +1076,7 @@ pub async fn navigate_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     navigate_ship_request: Option<models::NavigateShipRequest>,
-) -> Result<ResponseContent<NavigateShipSuccess>, Error<NavigateShipError>> {
+) -> Result<models::NavigateShip200Response, Error<NavigateShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_navigate_ship_request = navigate_ship_request;
@@ -1476,12 +1105,7 @@ pub async fn navigate_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<NavigateShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<NavigateShipError> = serde_json::from_str(&content).ok();
@@ -1497,7 +1121,7 @@ pub async fn navigate_ship(
 pub async fn negotiate_contract(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<NegotiateContractSuccess>, Error<NegotiateContractError>> {
+) -> Result<models::NegotiateContract200Response, Error<NegotiateContractError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1524,12 +1148,7 @@ pub async fn negotiate_contract(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<NegotiateContractSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<NegotiateContractError> = serde_json::from_str(&content).ok();
@@ -1545,7 +1164,7 @@ pub async fn negotiate_contract(
 pub async fn orbit_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<OrbitShipSuccess>, Error<OrbitShipError>> {
+) -> Result<models::OrbitShip200Response, Error<OrbitShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1572,12 +1191,7 @@ pub async fn orbit_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<OrbitShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<OrbitShipError> = serde_json::from_str(&content).ok();
@@ -1594,7 +1208,7 @@ pub async fn patch_ship_nav(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     patch_ship_nav_request: Option<models::PatchShipNavRequest>,
-) -> Result<ResponseContent<PatchShipNavSuccess>, Error<PatchShipNavError>> {
+) -> Result<models::GetShipNav200Response, Error<PatchShipNavError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_patch_ship_nav_request = patch_ship_nav_request;
@@ -1623,12 +1237,7 @@ pub async fn patch_ship_nav(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<PatchShipNavSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<PatchShipNavError> = serde_json::from_str(&content).ok();
@@ -1645,7 +1254,7 @@ pub async fn purchase_cargo(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     purchase_cargo_request: Option<models::PurchaseCargoRequest>,
-) -> Result<ResponseContent<PurchaseCargoSuccess>, Error<PurchaseCargoError>> {
+) -> Result<models::PurchaseCargo201Response, Error<PurchaseCargoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_purchase_cargo_request = purchase_cargo_request;
@@ -1674,12 +1283,7 @@ pub async fn purchase_cargo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<PurchaseCargoSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<PurchaseCargoError> = serde_json::from_str(&content).ok();
@@ -1695,7 +1299,7 @@ pub async fn purchase_cargo(
 pub async fn purchase_ship(
     configuration: &configuration::Configuration,
     purchase_ship_request: Option<models::PurchaseShipRequest>,
-) -> Result<ResponseContent<PurchaseShipSuccess>, Error<PurchaseShipError>> {
+) -> Result<models::PurchaseShip201Response, Error<PurchaseShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_purchase_ship_request = purchase_ship_request;
 
@@ -1719,12 +1323,7 @@ pub async fn purchase_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<PurchaseShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<PurchaseShipError> = serde_json::from_str(&content).ok();
@@ -1741,7 +1340,7 @@ pub async fn refuel_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     refuel_ship_request: Option<models::RefuelShipRequest>,
-) -> Result<ResponseContent<RefuelShipSuccess>, Error<RefuelShipError>> {
+) -> Result<models::RefuelShip200Response, Error<RefuelShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_refuel_ship_request = refuel_ship_request;
@@ -1770,12 +1369,7 @@ pub async fn refuel_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<RefuelShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<RefuelShipError> = serde_json::from_str(&content).ok();
@@ -1792,7 +1386,7 @@ pub async fn remove_mount(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     remove_mount_request: Option<models::RemoveMountRequest>,
-) -> Result<ResponseContent<RemoveMountSuccess>, Error<RemoveMountError>> {
+) -> Result<models::RemoveMount201Response, Error<RemoveMountError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_remove_mount_request = remove_mount_request;
@@ -1821,12 +1415,7 @@ pub async fn remove_mount(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<RemoveMountSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<RemoveMountError> = serde_json::from_str(&content).ok();
@@ -1842,7 +1431,7 @@ pub async fn remove_mount(
 pub async fn repair_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<RepairShipSuccess>, Error<RepairShipError>> {
+) -> Result<models::RepairShip200Response, Error<RepairShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1869,12 +1458,7 @@ pub async fn repair_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<RepairShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<RepairShipError> = serde_json::from_str(&content).ok();
@@ -1890,7 +1474,7 @@ pub async fn repair_ship(
 pub async fn scrap_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<ScrapShipSuccess>, Error<ScrapShipError>> {
+) -> Result<models::ScrapShip200Response, Error<ScrapShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -1917,12 +1501,7 @@ pub async fn scrap_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<ScrapShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<ScrapShipError> = serde_json::from_str(&content).ok();
@@ -1939,7 +1518,7 @@ pub async fn sell_cargo(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     sell_cargo_request: Option<models::SellCargoRequest>,
-) -> Result<ResponseContent<SellCargoSuccess>, Error<SellCargoError>> {
+) -> Result<models::SellCargo201Response, Error<SellCargoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_sell_cargo_request = sell_cargo_request;
@@ -1968,12 +1547,7 @@ pub async fn sell_cargo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<SellCargoSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<SellCargoError> = serde_json::from_str(&content).ok();
@@ -1990,7 +1564,7 @@ pub async fn ship_refine(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     ship_refine_request: Option<models::ShipRefineRequest>,
-) -> Result<ResponseContent<ShipRefineSuccess>, Error<ShipRefineError>> {
+) -> Result<models::ShipRefine201Response, Error<ShipRefineError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_ship_refine_request = ship_refine_request;
@@ -2019,12 +1593,7 @@ pub async fn ship_refine(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<ShipRefineSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<ShipRefineError> = serde_json::from_str(&content).ok();
@@ -2040,7 +1609,7 @@ pub async fn ship_refine(
 pub async fn siphon_resources(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
-) -> Result<ResponseContent<SiphonResourcesSuccess>, Error<SiphonResourcesError>> {
+) -> Result<models::SiphonResources201Response, Error<SiphonResourcesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
 
@@ -2067,12 +1636,7 @@ pub async fn siphon_resources(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<SiphonResourcesSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<SiphonResourcesError> = serde_json::from_str(&content).ok();
@@ -2089,7 +1653,7 @@ pub async fn transfer_cargo(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     transfer_cargo_request: Option<models::TransferCargoRequest>,
-) -> Result<ResponseContent<TransferCargoSuccess>, Error<TransferCargoError>> {
+) -> Result<models::TransferCargo200Response, Error<TransferCargoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_transfer_cargo_request = transfer_cargo_request;
@@ -2118,12 +1682,7 @@ pub async fn transfer_cargo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<TransferCargoSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<TransferCargoError> = serde_json::from_str(&content).ok();
@@ -2140,7 +1699,7 @@ pub async fn warp_ship(
     configuration: &configuration::Configuration,
     ship_symbol: &str,
     navigate_ship_request: Option<models::NavigateShipRequest>,
-) -> Result<ResponseContent<WarpShipSuccess>, Error<WarpShipError>> {
+) -> Result<models::WarpShip200Response, Error<WarpShipError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_ship_symbol = ship_symbol;
     let p_navigate_ship_request = navigate_ship_request;
@@ -2169,12 +1728,7 @@ pub async fn warp_ship(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<WarpShipSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<WarpShipError> = serde_json::from_str(&content).ok();

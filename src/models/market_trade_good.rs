@@ -20,27 +20,27 @@ pub struct MarketTradeGood {
     pub r#type: Type,
     /// This is the maximum number of units that can be purchased or sold at this market in a single trade for this good. Trade volume also gives an indication of price volatility. A market with a low trade volume will have large price swings, while high trade volume will be more resilient to price changes.
     #[serde(rename = "tradeVolume")]
-    pub trade_volume: u32,
+    pub trade_volume: i32,
     #[serde(rename = "supply")]
     pub supply: models::SupplyLevel,
     #[serde(rename = "activity", skip_serializing_if = "Option::is_none")]
     pub activity: Option<models::ActivityLevel>,
     /// The price at which this good can be purchased from the market.
     #[serde(rename = "purchasePrice")]
-    pub purchase_price: u32,
+    pub purchase_price: i32,
     /// The price at which this good can be sold to the market.
     #[serde(rename = "sellPrice")]
-    pub sell_price: u32,
+    pub sell_price: i32,
 }
 
 impl MarketTradeGood {
     pub fn new(
         symbol: models::TradeSymbol,
         r#type: Type,
-        trade_volume: u32,
+        trade_volume: i32,
         supply: models::SupplyLevel,
-        purchase_price: u32,
-        sell_price: u32,
+        purchase_price: i32,
+        sell_price: i32,
     ) -> MarketTradeGood {
         MarketTradeGood {
             symbol,

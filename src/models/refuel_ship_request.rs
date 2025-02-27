@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 pub struct RefuelShipRequest {
     /// The amount of fuel to fill in the ship's tanks. When not specified, the ship will be refueled to its maximum fuel capacity. If the amount specified is greater than the ship's remaining capacity, the ship will only be refueled to its maximum fuel capacity. The amount specified is not in market units but in ship fuel units.
     #[serde(rename = "units", skip_serializing_if = "Option::is_none")]
-    pub units: Option<u32>,
+    pub units: Option<i32>,
     /// Wether to use the FUEL thats in your cargo or not. Default: false
     #[serde(rename = "fromCargo", skip_serializing_if = "Option::is_none")]
     pub from_cargo: Option<bool>,

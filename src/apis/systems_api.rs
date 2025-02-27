@@ -13,78 +13,6 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for typed successes of method [`get_construction`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetConstructionSuccess {
-    Status200(models::GetConstruction200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_jump_gate`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetJumpGateSuccess {
-    Status200(models::GetJumpGate200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_market`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetMarketSuccess {
-    Status200(models::GetMarket200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_shipyard`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetShipyardSuccess {
-    Status200(models::GetShipyard200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_system`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetSystemSuccess {
-    Status200(models::GetSystem200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_system_waypoints`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetSystemWaypointsSuccess {
-    Status200(models::GetSystemWaypoints200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_systems`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetSystemsSuccess {
-    Status200(models::GetSystems200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_waypoint`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetWaypointSuccess {
-    Status200(models::GetWaypoint200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`supply_construction`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum SupplyConstructionSuccess {
-    Status201(models::SupplyConstruction201Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`get_construction`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -153,7 +81,7 @@ pub async fn get_construction(
     configuration: &configuration::Configuration,
     system_symbol: &str,
     waypoint_symbol: &str,
-) -> Result<ResponseContent<GetConstructionSuccess>, Error<GetConstructionError>> {
+) -> Result<models::GetConstruction200Response, Error<GetConstructionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_waypoint_symbol = waypoint_symbol;
@@ -180,12 +108,7 @@ pub async fn get_construction(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetConstructionSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetConstructionError> = serde_json::from_str(&content).ok();
@@ -202,7 +125,7 @@ pub async fn get_jump_gate(
     configuration: &configuration::Configuration,
     system_symbol: &str,
     waypoint_symbol: &str,
-) -> Result<ResponseContent<GetJumpGateSuccess>, Error<GetJumpGateError>> {
+) -> Result<models::GetJumpGate200Response, Error<GetJumpGateError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_waypoint_symbol = waypoint_symbol;
@@ -229,12 +152,7 @@ pub async fn get_jump_gate(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetJumpGateSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetJumpGateError> = serde_json::from_str(&content).ok();
@@ -251,7 +169,7 @@ pub async fn get_market(
     configuration: &configuration::Configuration,
     system_symbol: &str,
     waypoint_symbol: &str,
-) -> Result<ResponseContent<GetMarketSuccess>, Error<GetMarketError>> {
+) -> Result<models::GetMarket200Response, Error<GetMarketError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_waypoint_symbol = waypoint_symbol;
@@ -278,12 +196,7 @@ pub async fn get_market(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetMarketSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMarketError> = serde_json::from_str(&content).ok();
@@ -300,7 +213,7 @@ pub async fn get_shipyard(
     configuration: &configuration::Configuration,
     system_symbol: &str,
     waypoint_symbol: &str,
-) -> Result<ResponseContent<GetShipyardSuccess>, Error<GetShipyardError>> {
+) -> Result<models::GetShipyard200Response, Error<GetShipyardError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_waypoint_symbol = waypoint_symbol;
@@ -327,12 +240,7 @@ pub async fn get_shipyard(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetShipyardSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetShipyardError> = serde_json::from_str(&content).ok();
@@ -348,7 +256,7 @@ pub async fn get_shipyard(
 pub async fn get_system(
     configuration: &configuration::Configuration,
     system_symbol: &str,
-) -> Result<ResponseContent<GetSystemSuccess>, Error<GetSystemError>> {
+) -> Result<models::GetSystem200Response, Error<GetSystemError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
 
@@ -373,12 +281,7 @@ pub async fn get_system(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetSystemSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetSystemError> = serde_json::from_str(&content).ok();
@@ -394,11 +297,11 @@ pub async fn get_system(
 pub async fn get_system_waypoints(
     configuration: &configuration::Configuration,
     system_symbol: &str,
-    page: Option<u32>,
-    limit: Option<u32>,
+    page: Option<i32>,
+    limit: Option<i32>,
     r#type: Option<models::WaypointType>,
     traits: Option<models::GetSystemWaypointsTraitsParameter>,
-) -> Result<ResponseContent<GetSystemWaypointsSuccess>, Error<GetSystemWaypointsError>> {
+) -> Result<models::GetSystemWaypoints200Response, Error<GetSystemWaypointsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_page = page;
@@ -439,12 +342,7 @@ pub async fn get_system_waypoints(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetSystemWaypointsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetSystemWaypointsError> = serde_json::from_str(&content).ok();
@@ -459,9 +357,9 @@ pub async fn get_system_waypoints(
 /// Return a paginated list of all systems.
 pub async fn get_systems(
     configuration: &configuration::Configuration,
-    page: Option<u32>,
-    limit: Option<u32>,
-) -> Result<ResponseContent<GetSystemsSuccess>, Error<GetSystemsError>> {
+    page: Option<i32>,
+    limit: Option<i32>,
+) -> Result<models::GetSystems200Response, Error<GetSystemsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_page = page;
     let p_limit = limit;
@@ -489,12 +387,7 @@ pub async fn get_systems(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetSystemsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetSystemsError> = serde_json::from_str(&content).ok();
@@ -511,7 +404,7 @@ pub async fn get_waypoint(
     configuration: &configuration::Configuration,
     system_symbol: &str,
     waypoint_symbol: &str,
-) -> Result<ResponseContent<GetWaypointSuccess>, Error<GetWaypointError>> {
+) -> Result<models::GetWaypoint200Response, Error<GetWaypointError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_waypoint_symbol = waypoint_symbol;
@@ -538,12 +431,7 @@ pub async fn get_waypoint(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetWaypointSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetWaypointError> = serde_json::from_str(&content).ok();
@@ -561,7 +449,7 @@ pub async fn supply_construction(
     system_symbol: &str,
     waypoint_symbol: &str,
     supply_construction_request: Option<models::SupplyConstructionRequest>,
-) -> Result<ResponseContent<SupplyConstructionSuccess>, Error<SupplyConstructionError>> {
+) -> Result<models::SupplyConstruction201Response, Error<SupplyConstructionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_system_symbol = system_symbol;
     let p_waypoint_symbol = waypoint_symbol;
@@ -592,12 +480,7 @@ pub async fn supply_construction(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<SupplyConstructionSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<SupplyConstructionError> = serde_json::from_str(&content).ok();

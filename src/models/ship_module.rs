@@ -19,10 +19,10 @@ pub struct ShipModule {
     pub symbol: Symbol,
     /// Modules that provide capacity, such as cargo hold or crew quarters will show this value to denote how much of a bonus the module grants.
     #[serde(rename = "capacity", skip_serializing_if = "Option::is_none")]
-    pub capacity: Option<u32>,
+    pub capacity: Option<i32>,
     /// Modules that have a range will such as a sensor array show this value to denote how far can the module reach with its capabilities.
     #[serde(rename = "range", skip_serializing_if = "Option::is_none")]
-    pub range: Option<u32>,
+    pub range: Option<i32>,
     /// Name of this module.
     #[serde(rename = "name")]
     pub name: String,

@@ -13,22 +13,6 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for typed successes of method [`get_status`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetStatusSuccess {
-    Status200(models::GetStatus200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`register`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RegisterSuccess {
-    Status201(models::Register201Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`get_status`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -46,7 +30,7 @@ pub enum RegisterError {
 /// Return the status of the game server. This also includes a few global elements, such as announcements, server reset dates and leaderboards.
 pub async fn get_status(
     configuration: &configuration::Configuration,
-) -> Result<ResponseContent<GetStatusSuccess>, Error<GetStatusError>> {
+) -> Result<models::GetStatus200Response, Error<GetStatusError>> {
     let uri_str = format!("{}/", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -64,12 +48,7 @@ pub async fn get_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetStatusSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetStatusError> = serde_json::from_str(&content).ok();
@@ -85,7 +64,7 @@ pub async fn get_status(
 pub async fn register(
     configuration: &configuration::Configuration,
     register_request: Option<models::RegisterRequest>,
-) -> Result<ResponseContent<RegisterSuccess>, Error<RegisterError>> {
+) -> Result<models::Register201Response, Error<RegisterError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_register_request = register_request;
 
@@ -106,12 +85,7 @@ pub async fn register(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<RegisterSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<RegisterError> = serde_json::from_str(&content).ok();

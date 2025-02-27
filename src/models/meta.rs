@@ -16,18 +16,18 @@ use serde::{Deserialize, Serialize};
 pub struct Meta {
     /// Shows the total amount of items of this kind that exist.
     #[serde(rename = "total")]
-    pub total: u32,
+    pub total: i32,
     /// A page denotes an amount of items, offset from the first item. Each page holds an amount of items equal to the `limit`.
     #[serde(rename = "page")]
-    pub page: u32,
+    pub page: i32,
     /// The amount of items in each page. Limits how many items can be fetched at once.
     #[serde(rename = "limit")]
-    pub limit: u32,
+    pub limit: i32,
 }
 
 impl Meta {
     /// Meta details for pagination.
-    pub fn new(total: u32, page: u32, limit: u32) -> Meta {
+    pub fn new(total: i32, page: i32, limit: i32) -> Meta {
         Meta { total, page, limit }
     }
 }

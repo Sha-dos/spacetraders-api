@@ -13,30 +13,6 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for typed successes of method [`get_agent`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetAgentSuccess {
-    Status200(models::GetMyAgent200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_agents`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetAgentsSuccess {
-    Status200(models::GetAgents200Response),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`get_my_agent`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetMyAgentSuccess {
-    Status200(models::GetMyAgent200Response),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`get_agent`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -62,7 +38,7 @@ pub enum GetMyAgentError {
 pub async fn get_agent(
     configuration: &configuration::Configuration,
     agent_symbol: &str,
-) -> Result<ResponseContent<GetAgentSuccess>, Error<GetAgentError>> {
+) -> Result<models::GetMyAgent200Response, Error<GetAgentError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_agent_symbol = agent_symbol;
 
@@ -87,12 +63,7 @@ pub async fn get_agent(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetAgentSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetAgentError> = serde_json::from_str(&content).ok();
@@ -107,9 +78,9 @@ pub async fn get_agent(
 /// Fetch agents details.
 pub async fn get_agents(
     configuration: &configuration::Configuration,
-    page: Option<u32>,
-    limit: Option<u32>,
-) -> Result<ResponseContent<GetAgentsSuccess>, Error<GetAgentsError>> {
+    page: Option<i32>,
+    limit: Option<i32>,
+) -> Result<models::GetAgents200Response, Error<GetAgentsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_page = page;
     let p_limit = limit;
@@ -137,12 +108,7 @@ pub async fn get_agents(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetAgentsSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetAgentsError> = serde_json::from_str(&content).ok();
@@ -157,7 +123,7 @@ pub async fn get_agents(
 /// Fetch your agent's details.
 pub async fn get_my_agent(
     configuration: &configuration::Configuration,
-) -> Result<ResponseContent<GetMyAgentSuccess>, Error<GetMyAgentError>> {
+) -> Result<models::GetMyAgent200Response, Error<GetMyAgentError>> {
     let uri_str = format!("{}/my/agent", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -175,12 +141,7 @@ pub async fn get_my_agent(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        let entity: Option<GetMyAgentSuccess> = serde_json::from_str(&content).ok();
-        Ok(ResponseContent {
-            status,
-            content,
-            entity,
-        })
+        serde_json::from_str(&content).map_err(Error::from)
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMyAgentError> = serde_json::from_str(&content).ok();
