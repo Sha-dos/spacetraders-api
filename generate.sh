@@ -10,7 +10,7 @@ cd ..
 npx @openapitools/openapi-generator-cli generate \
  -i api-docs/reference/SpaceTraders.json \
  -g rust --skip-validate-spec \
- --additional-properties=supportAsync=true \
- --additional-properties=supportMiddleware=true
+ --additional-properties=supportAsync=true #\
+ #--additional-properties=supportMiddleware=true
 
 cargo fmt
